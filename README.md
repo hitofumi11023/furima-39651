@@ -26,7 +26,7 @@
 | user                    | references | null: false, foreign_key: true |
 ### Association
 - belongs to user
-- has one address
+- has one purchase
 
 ## Purchasesテーブル
 | Column | Type       | Options                        |
