@@ -8,7 +8,6 @@
 | last_name_kana     | string | null: false               |
 | birth_date         | date   | null: false               |
 | email              | string | null: false, unique: true |
-| password           | string | null: false               |
 | encrypted_password | string | null: false               |
 
 ### Association
