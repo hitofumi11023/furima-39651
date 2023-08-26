@@ -6,10 +6,10 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :first_name,
-  format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '名前は全角で入力してください' },
+  format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: '名前は全角で入力してください' },
   presence: true
   validates :last_name,
-  format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '名字は全角で入力してください' },
+  format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: '名字は全角で入力してください' },
   presence: true
   validates :first_name_kana,
   format: { with: /\A[ァ-ヴー]+\z/, message: '名前（カナ）は全角（カタカナ）で入力してください' },
