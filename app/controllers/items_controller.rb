@@ -1,14 +1,26 @@
 class ItemsController < ApplicationController
-  before_action :basic_auth
+  before_action :authenticate_user!, except: :index
 
   def index
   end
 
-  private
+  def new
+    @item = Item.new
+  end
 
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
     end
   end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:item_name, :item_info, :category_id, :sales_status_id, :shipping_fee_id, :prefecture_id, :scheduled_delivery_id, :price, :image).merge(user_id: current_user.id)
+  end
+
 end
