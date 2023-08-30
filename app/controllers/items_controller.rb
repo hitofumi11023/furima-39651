@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :basic_auth
+  before_action :authenticate_user!, except: :index
 
   def index
   end
@@ -18,12 +18,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
-    end
-  end
 
   def item_params
     params.require(:item).permit(:item_name, :item_info, :category_id, :sales_status_id, :shipping_fee_id, :prefecture_id, :scheduled_delivery_id, :price, :image).merge(user_id: current_user.id)
