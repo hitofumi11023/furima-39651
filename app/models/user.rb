@@ -22,5 +22,5 @@ class User < ApplicationRecord
   format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze, message: 'パスワードは6文字以上の半角英数字で入力してください' }
 
   has_many :items
-  
+  has_many :purchases
 end
