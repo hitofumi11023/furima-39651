@@ -1,6 +1,11 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  ActionCable.server.config.disable_request_forgery_protection = true
+  config.action_cable.url = "ws://54.250.87.52/cable" 
+  config.action_cable.allowed_request_origins = ['http://54.250.87.52']
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
