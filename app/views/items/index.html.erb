@@ -131,9 +131,11 @@
           <li class='list'>
             <%= link_to item_path(item.id), data: { turbo: false } do %>
             <div class='item-img-content'>
-              <% if item.image.present? %>
-              <%= image_tag item.image, data: { turbo: false }, class: "item-img" %>
-              <% end %>
+            <% if item.images.present? && item.images[0].present? %>
+            <%= image_tag item.images[0], class: "item-img", data: { turbo: false } %>
+            <% else %>
+            <!-- 画像が存在しない場合何も表示しない -->
+            <% end %>
             
             <%if item.purchase.present? %>
               <div class='sold-out'>

@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-  validates :image,                 presence: true
   validates :item_name,             presence: true, length: { minimum: 1, maximum: 40 }
   validates :item_info,             presence: true, length: { minimum: 1, maximum: 1000 }
   validates :price,                 numericality: { only_integer: true , greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
@@ -8,9 +7,10 @@ class Item < ApplicationRecord
   validates :shipping_fee_id,       numericality: { other_than: 1 , message: "を入力してください"} 
   validates :prefecture_id,         numericality: { other_than: 1 , message: "を入力してください"} 
   validates :scheduled_delivery_id, numericality: { other_than: 1 , message: "を入力してください"} 
+  validates :images,                presence: true, length: { minimum: 1, maximum: 5, message: "は1枚以上5枚以下にしてください" }
 
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_many :comments
   has_one :purchase
 

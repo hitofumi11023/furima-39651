@@ -33,6 +33,25 @@
   object-fit: contain;
 }
 
+
+.other-images {
+  display: flex;
+  justify-content: space-around;
+}
+
+.other-image img{
+  margin-right: 10px;
+  height: 200px;
+  width: 180px;
+  object-fit: contain;
+}
+
+.image-delete-button {
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+}
+
 .item-price-box {
   margin: 25px 0px;
   display: flex;
