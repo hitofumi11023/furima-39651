@@ -7,12 +7,19 @@
       <%= @item.item_name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @item.image ,class:"item-box-img" %>
+      <%= image_tag @item.images[0] ,class:"item-box-img" %>
       <%if @item.purchase.present? %>
         <div class="sold-out">
           <span>Sold Out!!</span>
         </div>
       <% end %>
+       <div class="other-images">
+        <% @item.images[1..-1].each do|image|%>
+          <div class="other-image">
+            <%= image_tag image%>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -25,7 +32,7 @@
 
     <% if user_signed_in? %>
       <% if current_user.id == @item.user.id && @item.purchase.nil? %>
-        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get,data: { turbo: false }, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", item_path(@item.id),data: { turbo_method: :delete }, class:"item-destroy" %>
       <% elsif  @item.purchase.present? %>
